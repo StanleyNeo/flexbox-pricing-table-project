@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexbox Pricing Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sono', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      color: #2d3748;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+
+    .pricing-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1a202c;
+    }
+
+    .pricing-header p {
+      font-size: 1.1rem;
+      color: #718096;
+      font-weight: 400;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+
+    .pricing-plan {
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-plan:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .pricing-plan.popular {
+      border: 2px solid #4f46e5;
+      scale: 1.03;
+    }
+
+    .pricing-plan.popular::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 16px;
+      right: -32px;
+      background: #4f46e5;
+      color: white;
+      padding: 4px 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transform: rotate(45deg);
+      letter-spacing: 0.5px;
+    }
+
+    .plan-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #1a202c;
+    }
+
+    .plan-price {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: #2d3748;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #718096;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      padding: 0.75rem 0;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .plan-features li.unavailable::before {
+      content: '✗';
+      color: #ef4444;
+    }
+
+    .plan-features li.unavailable {
+      color: #a0aec0;
+      text-decoration: line-through;
+    }
+
+    .plan-button {
+      padding: 0.9rem 1.5rem;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: auto;
+      box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
+    }
+
+    .plan-button:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(79, 70, 229, 0.4);
+    }
+
+    .plan-button.basic {
+      background: #718096;
+    }
+
+    .plan-button.basic:hover {
+      background: #4a5568;
+    }
+
+    .plan-button.premium {
+      background: #ec4899;
+    }
+
+    .plan-button.premium:hover {
+      background: #db2777;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1250px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pricing-plan {
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .pricing-plan.popular {
+        scale: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pricing-header h1 {
+        font-size: 2rem;
+      }
+
+      .plan-price {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="pricing-header">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Choose the perfect plan for your business — no hidden fees, cancel anytime.</p>
+  </div>
+
+  <div class="pricing-container">
+    <div class="pricing-plan">
+      <div class="plan-title">Basic</div>
+      <div class="plan-price">$11.99<span>/month</span></div>
+      <ul class="plan-features">
+        <li>10GB Storage</li>
+        <li>1 User</li>
+        <li class="unavailable">Support</li>
+      </ul>
+      <button class="plan-button basic">Sign Up</button>
+    </div>
+
+    <div class="pricing-plan popular">
+      <div class="plan-title">Standard</div>
+      <div class="plan-price">$19.99<span>/month</span></div>
+      <ul class="plan-features">
+        <li>50GB Storage</li>
+        <li>5 Users</li>
+        <li>Phone &amp; Email Support</li>
+      </ul>
+      <button class="plan-button">Get Started</button>
+    </div>
+
+    <div class="pricing-plan">
+      <div class="plan-title">Premium</div>
+      <div class="plan-price">$49.99<span>/month</span></div>
+      <ul class="plan-features">
+        <li>100GB Storage</li>
+        <li>10 Users</li>
+        <li>24/7 Priority Support</li>
+      </ul>
+      <button class="plan-button premium">Try Free</button>
+    </div>
+  </div>
+
+  <script>
+    // Optional: Add subtle staggered entrance on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const plans = document.querySelectorAll('.pricing-plan');
+      plans.forEach((plan, index) => {
+        plan.style.opacity = '0';
+        plan.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          plan.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          plan.style.opacity = '1';
+          plan.style.transform = 'translateY(0)';
+        }, 300 + index * 200);
+      });
+    });
+  </script>
+</body>
+</html>
+
